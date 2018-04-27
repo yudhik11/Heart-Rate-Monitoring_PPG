@@ -1,13 +1,11 @@
 function y = hankelize(X_group, Lp, Kp, N )
 % This function calculates a time signal from a matrix
-%
-INPUTS:
+% INPUTS:
 % X_group = grouped matrices
 % Lp = minimum of L and K
 % Kp = maximum of L and K
 % N = length of signal
-%
-OUTPUTS:
+% OUTPUTS:
 %
 % y = reconstructed time signal
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

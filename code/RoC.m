@@ -40,7 +40,7 @@ for i=1:length(acc_data(:,1))
         for m=1:3
             if pks(m) >= 0.5
                 % put the locations of the peaks in a vector
-                locs_MA = [locs_MA f(index_MA(m))];
+                locs_MA = [locs_MA, f(index_MA(m))];
             end
         end
     end
