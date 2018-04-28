@@ -4,8 +4,9 @@ function [BPM, SSRsig, S, C] = SSR_JOSS(y, Fs, N)
         % resolution is set to 1 BPM
         N = 60*Fs;
     end
-    
+    % create object
     sigY = signal(y);
+    % construct Y matrix
     Y = [sigY.ppg1; sigY.x; sigY.y; sigY.z];
     % Y must be M x L
     Y = transpose(Y);

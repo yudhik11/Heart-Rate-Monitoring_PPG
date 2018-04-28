@@ -1,44 +1,48 @@
-function [curLoc, curBPM, Trap_count] = SPT_JOSS(SSRsig, Fs, ...
-prevLoc, prevBPM, Trap_count)
+function [curLoc, curBPM, Trap_count] = SPT_JOSS(SSRsig, ...
+Fs, prevLoc, prevBPM, Trap_count)
 
-    % parameters SPT
-    delta1 = 15;
-    delta2 = 25;
     N = length(SSRsig);
+    
+    % SPT paramas
+    trig1 = 15;
+    trig2 = 25;
+    
     % initialization state
-    if ((prevLoc == -1 && prevBPM == -1))
-        curLoc = find(SSRsig == max(SSRsig));
-        curBPM = 60 * (curLoc - 1) / N * Fs;
+    if ( (prevLoc + prevBPM) == -2)
+        if (prevLoc == -1)
+            curLoc = find(SSRsig == max(SSRsig));
+            curBPM = 60 * (curLoc - 1) / N * Fs;
+        end
     else
         % set search range
-        R1 = (prevLoc - delta1) : (prevLoc + delta1);
-        [ ~, locs] = findPksInRange(SSRsig, R1);
-        numOfPks = length(locs);
-    if (numOfPks >= 1)
-        % find closest peak
-        curLoc = findClosestPeak(prevLoc, locs);
-        curBPM = 60 * (curLoc - 1) / N * Fs;
-    else
-        % increase search range
-        R2 = (prevLoc - delta2) : (prevLoc + delta2);
-        % find peaks in range2
-        [pks, locs] = findPksInRange(SSRsig, R2);
-        numOfPks = length(locs);
-        if (numOfPks >= 1)
-        % find maximum peak
-            [ ~, maxIndex] = max(pks);
-            curLoc = locs(maxIndex);
+        R1 = (prevLoc - trig1) : (prevLoc + trig1);
+        [ ~, MA_locs] = findPksInRange(SSRsig, R1);
+        totPeaks = length(MA_locs);
+        if (totPeaks >= 1)
+            % find closest peak
+            curLoc = findClosestPeak(prevLoc, MA_locs);
             curBPM = 60 * (curLoc - 1) / N * Fs;
         else
-            % choose prev BPM
-            curLoc = prevLoc;
-            curBPM = prevBPM;
+            % increase search range
+            R2 = (prevLoc - trig2) : (prevLoc + trig2);
+            % find peaks in range2
+            [pks, MA_locs] = findPksInRange(SSRsig, R2);
+            totPeaks = length(MA_locs);
+            if (totPeaks >= 1)
+            % find maximum peak
+                [ ~, maxIndex] = max(pks);
+                curLoc = MA_locs(maxIndex);
+                curBPM = 60 * (curLoc - 1) / N * Fs;
+            else
+                % choose prev BPM
+                curLoc = prevLoc;
+                curBPM = prevBPM;
+            end
         end
-    end
     end
     % validation
     if (curLoc == prevLoc)
-            Trap_count = Trap_count + 1;
+        Trap_count = Trap_count + 1;
         if (Trap_count > 2)
             % discover
             curLoc = discoverPeak(SSRsig, prevLoc);
