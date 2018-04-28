@@ -35,7 +35,7 @@ function [ testLoc, testBPM ] = ANC( sigWindow, prevLoc, Fs, Lssr )
     %========================
     %Get the PPG signal and its spectrum
     %============================================
-    ppg = sigWindow(2,:);
+    ppg = (sigWindow(2,:) + sigWindow(1,:))./2;
     ppg = ppg - mean(ppg);
     spec = abs(fft(ppg, N));
     Sspec = size(spec,1);
@@ -52,7 +52,7 @@ function [ testLoc, testBPM ] = ANC( sigWindow, prevLoc, Fs, Lssr )
     %  for calculating the HR with ANC.
     %====================================================================%
     if quality > 20
-        acc_data = sigWindow(4:6,:);
+        acc_data = sigWindow(3:5,:);
         [ clean_signal ] = LMS_sig(ppg,acc_data,filterorder,step_size);
         specLMS = abs(fft(clean_signal,N));
         StLi = size(specLMS, 1);

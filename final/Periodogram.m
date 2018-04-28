@@ -1,8 +1,8 @@
 function [ testLoc, BMP_test ] = Periodogram( sigWindow, prevLoc, Fs, Lssr )
 
-    acc = sqrt( sigWindow(4,:).^2 + ...
-                sigWindow(5,:).^2 + ...
-                sigWindow(6,:).^2);
+    acc = sqrt( sigWindow(3,:).^2 + ...
+                sigWindow(4,:).^2 + ...
+                sigWindow(5,:).^2);
     
     quality = max(acc);
     quality = quality*(rms(acc)^2);
@@ -13,7 +13,7 @@ function [ testLoc, BMP_test ] = Periodogram( sigWindow, prevLoc, Fs, Lssr )
         BPM_max = BPM(end);
         threshold = [10 40];
         
-        ppg = sigWindow(2,:);
+        ppg = (sigWindow(1,:) + sigWindow(2,:))./2;
         ppg = ppg - mean(ppg);
         spec = abs(fft(ppg, N));
         sspec = spec;
