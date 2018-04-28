@@ -10,7 +10,5 @@ for i=1:20%floor((x-1000)/250+1)
     ptc = tr;
     plssr = lssr;
     HR = [HR cBPM];
-%     figure;
-%     plot(y);
 end
 HR
