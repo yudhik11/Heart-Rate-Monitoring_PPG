@@ -11,7 +11,7 @@ prevLoc, prevBPM, Trap_count)
         curBPM = 60 * (curLoc - 1) / N * Fs;
     else
         % set search range
-        R1 = (prevLoc - delta1) : (prevLoc + delta1)
+        R1 = (prevLoc - delta1) : (prevLoc + delta1);
         [ ~, locs] = findPksInRange(SSRsig, R1);
         numOfPks = length(locs);
     if (numOfPks >= 1)
