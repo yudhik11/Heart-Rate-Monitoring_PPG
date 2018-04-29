@@ -12,7 +12,7 @@ function script(training_path, testing_path, saving_path)
         load (str1)
         L = length(sig);
         pl = -1, pBPM = -1, ptc = 0, plssr = 0, HR = [];
-        for i=20:-1:1%floor((x-1000)/250+1)
+        for i=10:-1:1%floor((x-1000)/250+1)
             x = sig(:,(i-1)*250+1:((i-1)*250) + 1000);
             y = x;
             [cl, cBPM, tr, lssr] = SMART(y, pl, pBPM, ptc, 1000, 125, plssr)
@@ -21,7 +21,7 @@ function script(training_path, testing_path, saving_path)
             ptc = tr;
             plssr = lssr;
         end
-        for i=1:125%floor((x-1000)/250+1)
+        for i=1:10%floor((x-1000)/250+1)
             x = sig(:,(i-1)*250+1:((i-1)*250) + 1000);
             y = x;
             [cl, cBPM, tr, lssr] = SMART(y, pl, pBPM, ptc, 1000, 125, plssr);
