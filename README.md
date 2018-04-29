@@ -1,5 +1,7 @@
 # Heart-Rate-Monitoring_PPG
 
+## Star this repo if you want to use the code. Happy coding!
+
 ## Background
 Fitness tracking is gaining massive popularity due to the advent of wearable devices that can track your vital signs. Heart rate monitoring is one such feature in many devices such as smart-watches and wristbands. The heart rate is estimated in real time and can guide exercises to adjust their workload and training programs, which is especially useful in rehabilitation.
 Most of the recording is done using photoplethysmographic (PPG) signals which are
