@@ -1,5 +1,13 @@
 # Heart-Rate-Monitoring_PPG
 
+## Background
+Fitness tracking is gaining massive popularity due to the advent of wearable devices that can track your vital signs. Heart rate monitoring is one such feature in many devices such as smart-watches and wristbands. The heart rate is estimated in real time and can guide exercises to adjust their workload and training programs, which is especially useful in rehabilitation.
+Most of the recording is done using photoplethysmographic (PPG) signals which are
+recorded from the wearer’s wrist. The PPG signal is recorded using embedded pulse oximeters. A pulse oximeter records a signal by illuminating the skin with an LED and measuring the intensity changes as the light reflects off the exercises during the wearer’s skin, forming a PPG signal. Each cycle of the PPG signal corresponds to a cardiac cycle, thus the heart rate can be estimated from the periodicity of the PPG signal.
+
+## Problem Statement
+Two-channel PPG signals, three-axis acceleration signals, and one-channel ECG signals were simultaneously recorded from subjects with age from 18 to 35. For each subject, the PPG signals were recorded from wrist by two pulse oximeters with green LEDs (wavelength: 515nm). Their distance (from center to center) was 2 cm. The acceleration signal was also recorded from wrist by a three-axis accelerometer. Both the pulse oximeter and the accelerometer were embedded in a wristband, which was comfortably worn. The ECG signal was recorded simultaneously from the chest using wet ECG sensors. All signals were sampled at 125 Hz and sent to a nearby computer via Bluetooth.
+
 ## TROIKA: A General Framework for Heart Rate Monitoring Using Wrist-Type Photoplethysmographic Signals During Intensive Physical Exercise
 https://ieeexplore.ieee.org/document/6905737/
 
